@@ -57,6 +57,7 @@ function fillFrame() {
             }
         })
 
+        // hover pixel highlighting
         newPixel.addEventListener('mouseenter', (e) => {
             e.preventDefault()
             const el = e.target
@@ -91,6 +92,7 @@ function fillFrame() {
         el.dataset.initialBG = 'transparent'
     }
 
+    // draw on move handlers
     frame.addEventListener('mousedown', (e) => {
         if (e.button === 0) {
             frame.addEventListener('mousemove', drawOnMove)
@@ -111,6 +113,7 @@ function fillFrame() {
         }
     })
 
+    // remove listeners on mouse leaving the frame
     frame.addEventListener('mouseleave', () => {
         frame.removeEventListener('mousemove', drawOnMove)
         frame.removeEventListener('mousemove', clearOnMove)
