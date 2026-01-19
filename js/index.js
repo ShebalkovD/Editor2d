@@ -1,3 +1,5 @@
+import { CONFIG } from './config.js'
+
 const frame = document.querySelector('.frame')
 const frameBG = document.querySelector('.frame_bg')
 
@@ -7,19 +9,18 @@ let currentColor = '#000'
 palette_field.value = currentColor
 
 // fill frame with pixels
-const FRAME_WIDTH = 8
-const FRAME_HEIGHT = 8
-const PIXEL_AMOUNT = FRAME_HEIGHT * FRAME_WIDTH
+
+const PIXEL_AMOUNT = CONFIG.FRAME_HEIGHT * CONFIG.FRAME_WIDTH
 
 function fillFrameBG() {
-    frameBG.style.gridTemplateColumns = `repeat(${FRAME_WIDTH}, 1fr)`
+    frameBG.style.gridTemplateColumns = `repeat(${CONFIG.FRAME_WIDTH}, 1fr)`
 
     let isShifted = false // Флаг для сдвига сетки фона
 
     for (let i = 0; i < PIXEL_AMOUNT; i++) {
         const newPixel = document.createElement('div')
         newPixel.classList = 'pixel_bg' 
-        isShifted = i % FRAME_WIDTH === 0 ? isShifted : !isShifted
+        isShifted = i % CONFIG.FRAME_WIDTH === 0 ? isShifted : !isShifted
         
         if ( i % 2 === 0) {
             newPixel.style.backgroundColor = isShifted ? 'gray' : 'darkgray'
@@ -34,7 +35,7 @@ function fillFrameBG() {
 }
 
 function fillFrame() {
-    frame.style.gridTemplateColumns = `repeat(${FRAME_WIDTH}, 1fr)`
+    frame.style.gridTemplateColumns = `repeat(${CONFIG.FRAME_WIDTH}, 1fr)`
 
     for (let i = 0; i < PIXEL_AMOUNT; i++) {
         const newPixel = document.createElement('div')
