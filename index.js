@@ -89,6 +89,11 @@ function fillFrame() {
            frame.removeEventListener('mousemove', clearOnMove)
         }
     })
+
+    frame.addEventListener('mouseleave', () => {
+        frame.removeEventListener('mousemove', drawOnMove)
+        frame.removeEventListener('mousemove', clearOnMove)
+    })
 }
 
 fillFrameBG()
