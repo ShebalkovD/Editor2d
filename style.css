@@ -14,13 +14,30 @@
     height: 100vh;
 }
 
+.frame_wrapper {
+    width: fit-content;
+    height: fit-content;
+    position: relative;
+}
+
 .frame {
     display: grid;
-    border: 2px solid black;
+}
+
+.frame_bg {
+    display: grid;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
 }
 
 .pixel {
-    border: 1px solid black;
+    width: 100px;
+    height: 100px;
+}
+
+.pixel_bg {
     width: 100px;
     height: 100px;
 }

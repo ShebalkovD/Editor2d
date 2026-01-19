@@ -1,4 +1,5 @@
 const frame = document.querySelector('.frame')
+const frameBG = document.querySelector('.frame_bg')
 
 const CURRENT_COLOR = 'red'
 
@@ -7,13 +8,36 @@ const FRAME_WIDTH = 8
 const FRAME_HEIGHT = 8
 const PIXEL_AMOUNT = FRAME_HEIGHT * FRAME_WIDTH
 
+function fillFrameBG() {
+    frameBG.style.gridTemplateColumns = `repeat(${FRAME_WIDTH}, 1fr)`
+
+    let isShifted = false // Флаг для сдвига сетки фона
+
+    for (let i = 0; i < PIXEL_AMOUNT; i++) {
+        const newPixel = document.createElement('div')
+        newPixel.classList = 'pixel_bg' 
+        isShifted = i % FRAME_WIDTH === 0 ? isShifted : !isShifted
+        
+        if ( i % 2 === 0) {
+            newPixel.style.backgroundColor = isShifted ? 'gray' : 'darkgray'
+        } else {
+            newPixel.style.backgroundColor = isShifted ? 'gray' : 'darkgray'
+        }
+        
+        newPixel.setAttribute('oncontextmenu', 'return false;')
+        
+        frameBG.appendChild(newPixel)
+    }
+}
+
 function fillFrame() {
     frame.style.gridTemplateColumns = `repeat(${FRAME_WIDTH}, 1fr)`
-    
+
     for (let i = 0; i < PIXEL_AMOUNT; i++) {
         const newPixel = document.createElement('div')
         newPixel.className = 'pixel' 
         newPixel.setAttribute('oncontextmenu', 'return false;')
+        newPixel.style.backgroundColor = 'transparent'
         newPixel.addEventListener(('mousedown'), (e) => {
             e.preventDefault()
     
@@ -67,6 +91,7 @@ function fillFrame() {
     })
 }
 
+fillFrameBG()
 fillFrame()
 
 // clear frame
