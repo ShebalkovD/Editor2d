@@ -29,6 +29,42 @@ function fillFrame() {
         })
         frame.appendChild(newPixel)
     }
+
+    function drawOnMove(e) {
+        e.preventDefault()
+        const el = e.target
+        if (!el.classList.contains('pixel')) return
+                
+        el.style.backgroundColor = CURRENT_COLOR
+    }
+
+    function clearOnMove(e) {
+        e.preventDefault()
+        const el = e.target
+        if (!el.classList.contains('pixel')) return
+                
+        el.style.backgroundColor = 'transparent'
+    }
+
+    frame.addEventListener('mousedown', (e) => {
+        if (e.button === 0) {
+            frame.addEventListener('mousemove', drawOnMove)
+        }
+    
+        if (e.button === 2) {
+           frame.addEventListener('mousemove', clearOnMove)
+        }
+    })
+
+    frame.addEventListener('mouseup', (e) => {
+       if (e.button === 0) {
+            frame.removeEventListener('mousemove', drawOnMove)
+        }
+    
+        if (e.button === 2) {
+           frame.removeEventListener('mousemove', clearOnMove)
+        }
+    })
 }
 
 fillFrame()
