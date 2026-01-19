@@ -4,6 +4,7 @@ const frameBG = document.querySelector('.frame_bg')
 const palette_field = document.getElementById('color_palette')
 
 let currentColor = '#000'
+palette_field.value = currentColor
 
 // fill frame with pixels
 const FRAME_WIDTH = 8
@@ -40,19 +41,35 @@ function fillFrame() {
         newPixel.className = 'pixel' 
         newPixel.setAttribute('oncontextmenu', 'return false;')
         newPixel.style.backgroundColor = 'transparent'
-        newPixel.addEventListener(('mousedown'), (e) => {
+        newPixel.addEventListener('mousedown', (e) => {
             e.preventDefault()
     
             if (e.button === 0) {
                 console.log('left')
                 e.target.style.backgroundColor = currentColor
+                e.target.dataset.initialBG = currentColor
             }
     
             if (e.button === 2) {
                 console.log('right')
                 e.target.style.backgroundColor = 'transparent'
+                e.target.dataset.initialBG = 'transparent'
             }
         })
+
+        newPixel.addEventListener('mouseenter', (e) => {
+            e.preventDefault()
+            const el = e.target
+            el.dataset.initialBG = el.style.backgroundColor
+            el.style.backgroundColor = currentColor
+        })
+
+        newPixel.addEventListener('mouseleave', (e) => {
+            e.preventDefault()
+            const el = e.target
+            el.style.backgroundColor = el.dataset.initialBG
+        })
+
         frame.appendChild(newPixel)
     }
 
@@ -62,6 +79,7 @@ function fillFrame() {
         if (!el.classList.contains('pixel')) return
                 
         el.style.backgroundColor = currentColor
+        el.dataset.initialBG = currentColor
     }
 
     function clearOnMove(e) {
@@ -70,6 +88,7 @@ function fillFrame() {
         if (!el.classList.contains('pixel')) return
                 
         el.style.backgroundColor = 'transparent'
+        el.dataset.initialBG = 'transparent'
     }
 
     frame.addEventListener('mousedown', (e) => {
