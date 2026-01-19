@@ -1,7 +1,9 @@
 const frame = document.querySelector('.frame')
 const frameBG = document.querySelector('.frame_bg')
 
-const CURRENT_COLOR = 'red'
+const palette_field = document.getElementById('color_palette')
+
+let currentColor = '#000'
 
 // fill frame with pixels
 const FRAME_WIDTH = 8
@@ -43,7 +45,7 @@ function fillFrame() {
     
             if (e.button === 0) {
                 console.log('left')
-                e.target.style.backgroundColor = CURRENT_COLOR
+                e.target.style.backgroundColor = currentColor
             }
     
             if (e.button === 2) {
@@ -59,7 +61,7 @@ function fillFrame() {
         const el = e.target
         if (!el.classList.contains('pixel')) return
                 
-        el.style.backgroundColor = CURRENT_COLOR
+        el.style.backgroundColor = currentColor
     }
 
     function clearOnMove(e) {
@@ -95,6 +97,10 @@ function fillFrame() {
         frame.removeEventListener('mousemove', clearOnMove)
     })
 }
+
+palette_field.addEventListener('change', (e) => {
+    currentColor = e.target.value
+})
 
 fillFrameBG()
 fillFrame()

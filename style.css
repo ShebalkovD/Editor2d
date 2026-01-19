@@ -18,6 +18,7 @@
     width: fit-content;
     height: fit-content;
     position: relative;
+    border: 2px solid black;
 }
 
 .frame {
