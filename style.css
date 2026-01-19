@@ -11,3 +11,14 @@
     width: 100%;
     height: 100vh;
 }
+
+.frame {
+    display: grid;
+    border: 2px solid black;
+}
+
+.pixel {
+    border: 1px solid black;
+    width: 100px;
+    height: 100px;
+}
