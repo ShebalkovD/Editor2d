@@ -51,8 +51,7 @@ export class UI {
                 newPixel.className = 'pixel';
                 newPixel.setAttribute('oncontextmenu', 'return false;');
                 newPixel.style.backgroundColor = 'transparent';
-                newPixel.dataset.x = j;
-                newPixel.dataset.y = i;
+                newPixel.dataset.coordinates = [j, i];
 
                 newPixel.addEventListener('mousedown', handlePixelClick);
 
