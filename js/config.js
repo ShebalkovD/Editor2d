@@ -12,7 +12,7 @@ export const CONFIG = {
             label: 'Ластик'
         }
     ],
-    DEFAULT_TOOL: 'pen',
+    DEFAULT_TOOL: 'brush',
 
     DEFAULT_COLOR: '#000000'
 };
