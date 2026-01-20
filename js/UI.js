@@ -64,14 +64,25 @@ export class UI {
     renderToolButtons() {
         CONFIG.TOOLS.forEach((tool) => {
             const newTool = document.createElement('button');
+            newTool.classList.add('tool');
             newTool.setAttribute('id', tool.name);
             newTool.innerHTML = tool.label;
-            newTool.addEventListener('click', () => {
+            if (tool.name === CONFIG.DEFAULT_TOOL) {
+                newTool.classList.add('active');
+            }
+
+            newTool.addEventListener('click', (e) => {
                 APP_STATE.tool = tool.name;
+                this.tools.forEach((tool) => {
+                    tool.classList.remove('active');
+                });
+                e.target.classList.add('active');
             });
 
             this.toolContainer.appendChild(newTool);
         });
+
+        this.tools = document.querySelectorAll('.tool');
     }
 
     // Добавить обработчики событий

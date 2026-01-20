@@ -76,3 +76,7 @@ button:hover {
     height: 2rem;
     padding: 0;
 }
+
+.tool.active {
+    background-color: darkorange;
+}
