@@ -1,4 +1,5 @@
 import { CONFIG } from './config.js';
+import { APP_STATE } from './main.js';
 import { handleDrawOnClick } from './handlers/handleDrawOnClick.js';
 import { handleHoverHighlightOn } from './handlers/handleHoverHighlightOn.js';
 import { handleHoverHighlightOff } from './handlers/handleHoverHighlightOff.js';
@@ -58,13 +59,6 @@ export class UI {
         }
     }
 
-    // Поменять текущий цвет
-    // changeColor() {
-    //     this.paletteField.addEventListener('change', (e) => {
-    //         currentColor = e.target.value;
-    //     });
-    // }
-
     // Добавить обработчики событий
     setEventListeners() {
         // Рисование при движении мыши
@@ -98,6 +92,11 @@ export class UI {
         this.clearButton.addEventListener('click', () => {
             this.frame.innerHTML = '';
             this.fillFrame();
+        });
+
+        // Поменять текущий цвет
+        this.paletteField.addEventListener('change', (e) => {
+            APP_STATE.currentColor = e.target.value;
         });
     }
 
