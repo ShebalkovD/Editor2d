@@ -7,6 +7,13 @@ export function handleDrawOnMove(e) {
         return;
     }
 
-    el.style.backgroundColor = APP_STATE.currentColor;
-    el.dataset.initialBG = APP_STATE.currentColor;
+    if (APP_STATE.tool === 'brush') {
+        el.style.backgroundColor = APP_STATE.currentColor;
+        el.dataset.initialBG = APP_STATE.currentColor;
+    }
+
+    if (APP_STATE.tool === 'eraser') {
+        el.style.backgroundColor = 'transparent';
+        el.dataset.initialBG = 'tranparent';
+    }
 }
