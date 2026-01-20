@@ -10,6 +10,10 @@ export const CONFIG = {
         {
             name: 'eraser',
             label: 'Ластик'
+        },
+        {
+            name: 'fill',
+            label: 'Заливка'
         }
     ],
     DEFAULT_TOOL: 'brush',
