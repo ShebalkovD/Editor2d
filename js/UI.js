@@ -45,19 +45,23 @@ export class UI {
     fillFrame() {
         this.frame.style.gridTemplateColumns = `repeat(${CONFIG.FRAME_WIDTH}, 1fr)`;
 
-        for (let i = 0; i < CONFIG.PIXEL_AMOUNT; i++) {
-            const newPixel = document.createElement('div');
-            newPixel.className = 'pixel';
-            newPixel.setAttribute('oncontextmenu', 'return false;');
-            newPixel.style.backgroundColor = 'transparent';
+        for (let i = 0; i < CONFIG.FRAME_HEIGHT; i++) {
+            for (let j = 0; j < CONFIG.FRAME_WIDTH; j++) {
+                const newPixel = document.createElement('div');
+                newPixel.className = 'pixel';
+                newPixel.setAttribute('oncontextmenu', 'return false;');
+                newPixel.style.backgroundColor = 'transparent';
+                newPixel.dataset.x = j;
+                newPixel.dataset.y = i;
 
-            newPixel.addEventListener('mousedown', handlePixelClick);
+                newPixel.addEventListener('mousedown', handlePixelClick);
 
-            // Подсветка пикселя при наведении
-            newPixel.addEventListener('mouseenter', handlePixelHoverOn);
-            newPixel.addEventListener('mouseleave', handlePixelHoverOff);
+                // Подсветка пикселя при наведении
+                newPixel.addEventListener('mouseenter', handlePixelHoverOn);
+                newPixel.addEventListener('mouseleave', handlePixelHoverOff);
 
-            this.frame.appendChild(newPixel);
+                this.frame.appendChild(newPixel);
+            }
         }
     }
 
