@@ -1,8 +1,8 @@
 import { CONFIG } from './config.js';
 import { APP_STATE } from './main.js';
-import { handleDrawOnClick } from './handlers/handleDrawOnClick.js';
-import { handleHoverHighlightOn } from './handlers/handleHoverHighlightOn.js';
-import { handleHoverHighlightOff } from './handlers/handleHoverHighlightOff.js';
+import { handlePixelClick } from './handlers/handlePixelClick.js';
+import { handlePixelHoverOn } from './handlers/handlePixelHoverOn.js';
+import { handlePixelHoverOff } from './handlers/handlePixelHoverOff.js';
 import { handleDrawOnMove } from './handlers/handleDrawOnMove.js';
 import { handleClearOnMove } from './handlers/handleClearOnMove.js';
 
@@ -48,11 +48,11 @@ export class UI {
             newPixel.setAttribute('oncontextmenu', 'return false;');
             newPixel.style.backgroundColor = 'transparent';
 
-            newPixel.addEventListener('mousedown', handleDrawOnClick);
+            newPixel.addEventListener('mousedown', handlePixelClick);
 
             // Подсветка пикселя при наведении
-            newPixel.addEventListener('mouseenter', handleHoverHighlightOn);
-            newPixel.addEventListener('mouseleave', handleHoverHighlightOff);
+            newPixel.addEventListener('mouseenter', handlePixelHoverOn);
+            newPixel.addEventListener('mouseleave', handlePixelHoverOff);
 
             this.frame.appendChild(newPixel);
         }

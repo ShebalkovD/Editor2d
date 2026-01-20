@@ -1,6 +1,6 @@
 import { APP_STATE } from '../main.js';
 
-export function handleDrawOnClick(e) {
+export function handlePixelClick(e) {
     e.preventDefault();
 
     if (e.button === 0) {

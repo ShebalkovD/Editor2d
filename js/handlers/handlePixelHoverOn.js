@@ -1,6 +1,6 @@
 import { APP_STATE } from '../main.js';
 
-export function handleHoverHighlightOn(e) {
+export function handlePixelHoverOn(e) {
     e.preventDefault();
     const el = e.target;
     el.dataset.initialBG = el.style.backgroundColor;
