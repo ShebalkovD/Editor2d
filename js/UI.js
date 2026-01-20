@@ -1,5 +1,6 @@
 import { CONFIG } from './config.js';
 import { APP_STATE } from './main.js';
+import { hexToRGB } from './utils/hexToRGB.js';
 import {
     handleClearOnMove,
     handleDrawOnMove,
@@ -135,7 +136,7 @@ export class UI {
         this.fillFrame();
         this.setEventListeners();
 
-        this.paletteField.value = CONFIG.DEFAULT_COLOR;
+        this.paletteField.value = hexToRGB(CONFIG.DEFAULT_COLOR);
         this.renderToolButtons();
     }
 }

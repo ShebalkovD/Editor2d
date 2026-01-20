@@ -18,7 +18,7 @@ export const CONFIG = {
     ],
     DEFAULT_TOOL: 'brush',
 
-    DEFAULT_COLOR: '#000000'
+    DEFAULT_COLOR: 'rgb(0, 0, 0)'
 };
 
 CONFIG.PIXEL_AMOUNT = CONFIG.FRAME_WIDTH * CONFIG.FRAME_HEIGHT;
