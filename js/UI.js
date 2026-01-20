@@ -121,6 +121,7 @@ export class UI {
         this.fillFrame();
         this.setEventListeners();
 
+        this.paletteField.value = CONFIG.DEFAULT_COLOR;
         this.renderToolButtons();
     }
 }
