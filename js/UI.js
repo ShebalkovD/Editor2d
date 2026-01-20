@@ -1,10 +1,12 @@
 import { CONFIG } from './config.js';
 import { APP_STATE } from './main.js';
-import { handlePixelClick } from './handlers/handlePixelClick.js';
-import { handlePixelHoverOn } from './handlers/handlePixelHoverOn.js';
-import { handlePixelHoverOff } from './handlers/handlePixelHoverOff.js';
-import { handleDrawOnMove } from './handlers/handleDrawOnMove.js';
-import { handleClearOnMove } from './handlers/handleClearOnMove.js';
+import {
+    handleClearOnMove,
+    handleDrawOnMove,
+    handlePixelHoverOff,
+    handlePixelHoverOn,
+    handlePixelClick
+} from './handlers/index.js';
 
 export class UI {
     constructor() {
