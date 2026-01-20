@@ -1,8 +1,9 @@
-// eslint.config.mjs
 import js from "@eslint/js";
 import globals from "globals";
+import prettierConfig from "eslint-config-prettier";
 
 export default [
+    js.configs.recommended,
     {
         files: ["**/*.js"],
         languageOptions: {
@@ -14,18 +15,22 @@ export default [
             }
         },
         rules: {
-            "indent": ["error", 4],
-            "linebreak-style": ["error", "unix"],
-            "quotes": ["error", "single", { "avoidEscape": true }],
-            "semi": ["error", "always"],
+            // Только правила логики, без правил форматирования
             "no-unused-vars": ["warn", { "args": "none" }],
             "no-console": ["warn"],
             "prefer-const": "error",
             "eqeqeq": ["error", "always"],
             "curly": ["error", "all"],
-            "arrow-spacing": "error",
-            "no-var": "error",
-            "brace-style": ["error", "1tbs"]
+            "no-var": "error"
+        }
+    },
+    prettierConfig, // Отключает все правила форматирования ESLint
+    {
+        plugins: {
+            prettier: (await import("eslint-plugin-prettier")).default
+        },
+        rules: {
+            "prettier/prettier": ["error", {}, { usePrettierrc: true }]
         }
     }
 ];
