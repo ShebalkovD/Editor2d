@@ -1,9 +1,11 @@
+import { APP_STATE } from '../main.js';
+
 export function handleDrawOnClick(e) {
     e.preventDefault();
 
     if (e.button === 0) {
-        e.target.style.backgroundColor = this.currentColor;
-        e.target.dataset.initialBG = this.currentColor;
+        e.target.style.backgroundColor = APP_STATE.currentColor;
+        e.target.dataset.initialBG = APP_STATE.currentColor;
     }
 
     if (e.button === 2) {
