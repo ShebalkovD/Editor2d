@@ -12,6 +12,7 @@ export class UI {
         this.frameBG = document.querySelector('.frame_bg');
         this.paletteField = document.getElementById('color_palette');
         this.clearButton = document.getElementById('clear_button');
+        this.eraserButton = document.getElementById('eraser_button');
     }
 
     // Заполнить фон холста

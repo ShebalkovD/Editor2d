@@ -8,13 +8,18 @@
 </head>
 <body>
     <div class="container">
-        <button id="clear_button">очистка</button>
-        <div class="tools">
-            <input type="color" id="color_palette" value="#000" />
-        </div>
-        <div class="frame_wrapper">
-            <div class="frame"></div>
-            <div class="frame_bg"></div>
+        <div class="wrapper">
+            <div class="top-bar">
+                <button id="clear_button">очистка</button>
+            </div>
+            <div class="frame_wrapper">
+                <div class="frame"></div>
+                <div class="frame_bg"></div>
+            </div>
+            <div class="bottom-bar tools">
+                <input type="color" id="color_palette" value="#000" />
+                <button id="eraser_button">Ластик</button>
+            </div>
         </div>
     </div>
     <script src="js/main.js" type="module"></script>
