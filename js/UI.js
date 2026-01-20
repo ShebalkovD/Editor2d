@@ -14,7 +14,7 @@ export class UI {
         this.frameBG = document.querySelector('.frame_bg');
         this.paletteField = document.getElementById('color_palette');
         this.clearButton = document.getElementById('clear_button');
-        this.eraserButton = document.getElementById('eraser_button');
+        this.toolContainer = document.querySelector('.tools');
     }
 
     // Заполнить фон холста
@@ -59,6 +59,19 @@ export class UI {
 
             this.frame.appendChild(newPixel);
         }
+    }
+
+    renderToolButtons() {
+        CONFIG.TOOLS.forEach((tool) => {
+            const newTool = document.createElement('button');
+            newTool.setAttribute('id', tool.name);
+            newTool.innerHTML = tool.label;
+            newTool.addEventListener('click', () => {
+                APP_STATE.tool = tool.name;
+            });
+
+            this.toolContainer.appendChild(newTool);
+        });
     }
 
     // Добавить обработчики событий
@@ -107,5 +120,7 @@ export class UI {
         this.fillFrameBG();
         this.fillFrame();
         this.setEventListeners();
+
+        this.renderToolButtons();
     }
 }
