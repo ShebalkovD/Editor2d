@@ -8,6 +8,7 @@ import {
     handlePixelHoverOn,
     handlePixelClick
 } from './handlers/index.js';
+import { handleResizeFrame } from './handlers/handleResizeFrame.js';
 
 export class UI {
     constructor() {
@@ -18,14 +19,16 @@ export class UI {
         this.toolContainer = document.querySelector('.tools');
         this.frameWidthField = document.getElementById('frame_width_input');
         this.frameHeightField = document.getElementById('frame_height_input');
+        this.resizeButton = document.getElementById('frame_resize');
     }
 
     // Заполнить фон холста
     fillFrameBG() {
         this.frameBG.style.gridTemplateColumns = `repeat(${CONFIG.FRAME_WIDTH}, 1fr)`;
         let isShifted = false; // Флаг для сдвига сетки фона
+        const pixel_amount = CONFIG.FRAME_WIDTH * CONFIG.FRAME_HEIGHT;
 
-        for (let i = 0; i < CONFIG.PIXEL_AMOUNT; i++) {
+        for (let i = 0; i < pixel_amount; i++) {
             const newPixel = document.createElement('div');
             newPixel.classList = 'pixel_bg';
 
@@ -130,6 +133,8 @@ export class UI {
         this.paletteField.addEventListener('change', (e) => {
             APP_STATE.currentColor = e.target.value;
         });
+
+        this.resizeButton.addEventListener('click', () => handleResizeFrame(this));
     }
 
     // Вывод интерфейса, инициализация обработчиков
