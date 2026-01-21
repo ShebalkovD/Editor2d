@@ -14,6 +14,6 @@ export function handleDrawOnMove(e) {
 
     if (APP_STATE.tool === 'eraser') {
         el.style.backgroundColor = 'transparent';
-        el.dataset.initialBG = 'tranparent';
+        el.dataset.initialBG = 'transparent';
     }
 }
