@@ -138,6 +138,8 @@ export class UI {
         this.fillFrame();
         this.setEventListeners();
 
+        this.frameWidthField.value = CONFIG.FRAME_WIDTH;
+        this.frameHeightField.value = CONFIG.FRAME_HEIGHT;
         this.paletteField.value = hexToRGB(CONFIG.DEFAULT_COLOR);
         this.renderToolButtons();
     }
