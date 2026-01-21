@@ -16,6 +16,8 @@ export class UI {
         this.paletteField = document.getElementById('color_palette');
         this.clearButton = document.getElementById('clear_button');
         this.toolContainer = document.querySelector('.tools');
+        this.frameWidthField = document.getElementById('frame_width_input');
+        this.frameHeightField = document.getElementById('frame_height_input');
     }
 
     // Заполнить фон холста
