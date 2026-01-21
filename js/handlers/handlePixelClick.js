@@ -74,8 +74,6 @@ function fillClick(el, startColor, currentColor, timeoutID) {
         pixel.dataset.initialBG = currentColor;
         const timeout = setTimeout(() => fillClick(pixel, startColor, currentColor, timeout), 5);
     });
-
-    return;
 }
 
 export function handlePixelClick(e) {
