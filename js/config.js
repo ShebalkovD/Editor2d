@@ -1,6 +1,7 @@
 export const CONFIG = {
-    FRAME_WIDTH: 8,
-    FRAME_HEIGHT: 8,
+    GRID_SIZE: 8,
+    CANVAS_WIDTH: 320,
+    CANVAS_HEIGHT: 320,
 
     TOOLS: [
         {
@@ -18,7 +19,5 @@ export const CONFIG = {
     ],
     DEFAULT_TOOL: 'brush',
 
-    DEFAULT_COLOR: 'rgb(0, 0, 0)'
+    DEFAULT_COLOR: 'rgb(0, 0, 0, 100)'
 };
-
-CONFIG.PIXEL_AMOUNT = CONFIG.FRAME_WIDTH * CONFIG.FRAME_HEIGHT;

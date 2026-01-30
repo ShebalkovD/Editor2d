@@ -1,68 +1,48 @@
 import { CONFIG } from './config.js';
 import { APP_STATE } from './main.js';
 import { hexToRGB } from './utils/hexToRGB.js';
-import {
-    handleClearOnMove,
-    handleDrawOnMove,
-    handlePixelHoverOff,
-    handlePixelHoverOn,
-    handlePixelClick
-} from './handlers/index.js';
 
 export class UI {
     constructor() {
-        this.frame = document.querySelector('.frame');
-        this.frameBG = document.querySelector('.frame_bg');
+        this.canvas = document.getElementById('canvas');
+        this.ctx = this.canvas.getContext('2d');
         this.paletteField = document.getElementById('color_palette');
         this.clearButton = document.getElementById('clear_button');
         this.toolContainer = document.querySelector('.tools');
+
+        this.canvas.setAttribute('width', `${CONFIG.CANVAS_WIDTH}`);
+        this.canvas.setAttribute('height', `${CONFIG.CANVAS_HEIGHT}`);
+
+        this.pixelSize = CONFIG.CANVAS_WIDTH / CONFIG.GRID_SIZE;
     }
 
-    // Заполнить фон холста
-    fillFrameBG() {
-        this.frameBG.style.gridTemplateColumns = `repeat(${CONFIG.FRAME_WIDTH}, 1fr)`;
-        let isShifted = false; // Флаг для сдвига сетки фона
+    setEventListeners() {
+        this.canvas.addEventListener('mousedown', () => {
+            APP_STATE.draw = true;
+        });
 
-        for (let i = 0; i < CONFIG.PIXEL_AMOUNT; i++) {
-            const newPixel = document.createElement('div');
-            newPixel.classList = 'pixel_bg';
+        this.canvas.addEventListener('mouseup', () => {
+            APP_STATE.draw = false;
+        });
 
-            // Сдвиг меняется на каждой строке сетки
-            isShifted = i % CONFIG.FRAME_WIDTH === 0 ? isShifted : !isShifted;
+        this.canvas.addEventListener('mousemove', (event) => {
+            if (APP_STATE.draw) {
+                const mouse = {
+                    x: event.x - event.target.offsetLeft - 10,
+                    y: event.y - event.target.offsetTop - 10
+                };
 
-            if (i % 2 === 0) {
-                newPixel.style.backgroundColor = isShifted ? 'gray' : 'darkgray';
-            } else {
-                newPixel.style.backgroundColor = isShifted ? 'gray' : 'darkgray';
+                const pixelX = Math.floor(mouse.x / this.pixelSize);
+                const pixelY = Math.floor(mouse.y / this.pixelSize);
+
+                this.ctx.fillRect(
+                    pixelX * this.pixelSize,
+                    pixelY * this.pixelSize,
+                    this.pixelSize,
+                    this.pixelSize
+                );
             }
-
-            newPixel.setAttribute('oncontextmenu', 'return false;');
-
-            this.frameBG.appendChild(newPixel);
-        }
-    }
-
-    // Заполнить сетку холста
-    fillFrame() {
-        this.frame.style.gridTemplateColumns = `repeat(${CONFIG.FRAME_WIDTH}, 1fr)`;
-
-        for (let i = 0; i < CONFIG.FRAME_HEIGHT; i++) {
-            for (let j = 0; j < CONFIG.FRAME_WIDTH; j++) {
-                const newPixel = document.createElement('div');
-                newPixel.className = 'pixel';
-                newPixel.setAttribute('oncontextmenu', 'return false;');
-                newPixel.style.backgroundColor = 'transparent';
-                newPixel.dataset.coordinates = [j, i];
-
-                newPixel.addEventListener('mousedown', handlePixelClick);
-
-                // Подсветка пикселя при наведении
-                newPixel.addEventListener('mouseenter', handlePixelHoverOn);
-                newPixel.addEventListener('mouseleave', handlePixelHoverOff);
-
-                this.frame.appendChild(newPixel);
-            }
-        }
+        });
     }
 
     renderToolButtons() {
@@ -89,54 +69,10 @@ export class UI {
         this.tools = document.querySelectorAll('.tool');
     }
 
-    // Добавить обработчики событий
-    setEventListeners() {
-        // Рисование при движении мыши
-        this.frame.addEventListener('mousedown', (e) => {
-            if (e.button === 0) {
-                this.frame.addEventListener('mousemove', handleDrawOnMove);
-            }
-
-            if (e.button === 2) {
-                this.frame.addEventListener('mousemove', handleClearOnMove);
-            }
-        });
-
-        this.frame.addEventListener('mouseup', (e) => {
-            if (e.button === 0) {
-                this.frame.removeEventListener('mousemove', handleDrawOnMove);
-            }
-
-            if (e.button === 2) {
-                this.frame.removeEventListener('mousemove', handleClearOnMove);
-            }
-        });
-
-        // Выход из зоны холста
-        this.frame.addEventListener('mouseleave', () => {
-            this.frame.removeEventListener('mousemove', handleDrawOnMove);
-            this.frame.removeEventListener('mousemove', handleClearOnMove);
-        });
-
-        // Очистка холста
-        this.clearButton.addEventListener('click', () => {
-            this.frame.innerHTML = '';
-            this.fillFrame();
-        });
-
-        // Поменять текущий цвет
-        this.paletteField.addEventListener('change', (e) => {
-            APP_STATE.currentColor = e.target.value;
-        });
-    }
-
-    // Вывод интерфейса, инициализация обработчиков
     init() {
-        this.fillFrameBG();
-        this.fillFrame();
-        this.setEventListeners();
-
+        this.ctx.fillStyle = CONFIG.DEFAULT_COLOR;
         this.paletteField.value = hexToRGB(CONFIG.DEFAULT_COLOR);
         this.renderToolButtons();
+        this.setEventListeners();
     }
 }

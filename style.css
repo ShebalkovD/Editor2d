@@ -42,23 +42,8 @@ button:hover {
     gap: 1rem;
 }
 
-.frame_wrapper {
-    width: fit-content;
-    height: fit-content;
-    position: relative;
+canvas {
     border: 2px solid black;
-}
-
-.frame {
-    display: grid;
-}
-
-.frame_bg {
-    display: grid;
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: -1;
 }
 
 .pixel {

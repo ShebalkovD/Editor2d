@@ -3,8 +3,9 @@ import { UI } from './UI.js';
 
 export const APP_STATE = {
     currentColor: CONFIG.DEFAULT_COLOR,
-    tool: CONFIG.DEFAULT_TOOL
+    tool: CONFIG.DEFAULT_TOOL,
+    draw: false
 };
 
-const screen = new UI();
-screen.init();
+const ui = new UI();
+ui.init();
