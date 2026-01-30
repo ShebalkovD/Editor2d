@@ -1,7 +1,7 @@
 export const CONFIG = {
     GRID_SIZE: 8,
-    CANVAS_WIDTH: 320,
-    CANVAS_HEIGHT: 320,
+    CANVAS_WIDTH: 640,
+    CANVAS_HEIGHT: 640,
 
     TOOLS: [
         {

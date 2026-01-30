@@ -26,12 +26,11 @@ export class UI {
         });
 
         this.canvas.addEventListener('mousemove', (event) => {
+            const mouse = {
+                x: event.x - event.target.offsetLeft,
+                y: event.y - event.target.offsetTop
+            };
             if (APP_STATE.draw) {
-                const mouse = {
-                    x: event.x - event.target.offsetLeft - 10,
-                    y: event.y - event.target.offsetTop - 10
-                };
-
                 const pixelX = Math.floor(mouse.x / this.pixelSize);
                 const pixelY = Math.floor(mouse.y / this.pixelSize);
 
@@ -42,6 +41,10 @@ export class UI {
                     this.pixelSize
                 );
             }
+        });
+
+        this.canvas.addEventListener('mouseleave', () => {
+            APP_STATE.draw = false;
         });
     }
 
